@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">NearestPlace</string>
+    <string name="google_maps_key">AIzaSyBz2osoWyJWYyrCClZD7lwS8SlVGrzA3rI</string>
+    <string-array name="cari_tempat">
+        <item>--Cari Tempat--</item>
+        <item>Masjid</item>
+        <item>Restoran</item>
+        <item>ATM</item>
+        <item>Bank</item>
+        <item>Kantor Damkar</item>
+        <item>Rumah Sakit</item>
+        <item>Laundry</item>
+        <item>Bioskop</item>
+        <item>Kantor Pos</item>
+        <item>Kantor Polisi</item>
+        <item>Sekolah</item>
+    </string-array>
+</resources>
