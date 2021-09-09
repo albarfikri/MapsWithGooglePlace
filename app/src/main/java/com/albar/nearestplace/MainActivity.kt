@@ -1,19 +1,17 @@
 package com.albar.nearestplace
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.BuildConfig
 import com.albar.nearestplace.databinding.ActivityMainBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 
 class MainActivity : AppCompatActivity() {
-    companion object{
-
-    }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -26,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        val ai: ApplicationInfo = applicationContext.packageManager
+            .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
+        val value = ai.metaData["apiKey"]
+        val apiKey = value.toString()
 
         val fragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         fragment!!.getMapAsync { googleMap ->
@@ -64,10 +68,15 @@ class MainActivity : AppCompatActivity() {
                         "police"
                 }
                 if (position != 0) { //place API
-                    val sb = "https://maps.googleapis.com/maps/api/place/nearbysearcgh"
+                    val sb = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+                            "location=" + mLatitude + "," + mLongitude +
+                            "&radius=5000" +
+                            "&types=" + xType +
+                            "&sensor=true" +
+                            "&key=" + apiKey
+                    startProg()
+                    PlacesTask().execute(sb)
                 }
-
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
