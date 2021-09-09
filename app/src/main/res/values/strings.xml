@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NearestPlace</string>
-    <string name="google_maps_key">AIzaSyBz2osoWyJWYyrCClZD7lwS8SlVGrzA3rI</string>
+    <string name="google_maps_key"></string>
     <string-array name="cari_tempat">
         <item>--Cari Tempat--</item>
         <item>Masjid</item>

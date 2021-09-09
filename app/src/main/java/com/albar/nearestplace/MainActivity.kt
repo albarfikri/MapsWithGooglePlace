@@ -5,17 +5,22 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.BuildConfig
 import com.albar.nearestplace.databinding.ActivityMainBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 
 class MainActivity : AppCompatActivity() {
+    companion object{
+
+    }
 
     private lateinit var binding: ActivityMainBinding
 
     var mGoogleMap: GoogleMap? = null
     var mLatitude = 0.0
     var mLongitude = 0.0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +41,33 @@ class MainActivity : AppCompatActivity() {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spnCari.adapter = myAdapter
         // Listener
-        binding.spnCari.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        binding.spnCari.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
-                TODO("Not yet implemented")
+            ) { // daftar pilihan spinner
+                var xType = ""
+                when (position) {
+                    1 -> xType = "mosque"
+                    2 -> xType = "restaurant"
+                    3 -> xType = "atm"
+                    4 -> xType = "bank"
+                    5 -> xType = "school"
+                    6 -> xType = "hospital"
+                    7 -> xType = "laundry"
+                    8 -> xType =
+                        "university"
+                    9 -> xType = "post_office"
+                    10 -> xType =
+                        "police"
+                }
+                if (position != 0) { //place API
+                    val sb = "https://maps.googleapis.com/maps/api/place/nearbysearcgh"
+                }
+
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -51,5 +75,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun initMap() {
+        TODO("Not yet implemented")
     }
 }
